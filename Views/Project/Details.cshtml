@@ -1,0 +1,41 @@
+@model MyPortfolio.Models.Project
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="articleDetails">
+    <h1>Details</h1>
+    <article>
+        <picture>
+            <img src="@("~/Images/"+Model.ImageName)" alt="" asp-append-version="true" />
+        </picture>
+        <h2>
+            @Html.DisplayFor(model => model.Name)
+        </h2>
+        <p>
+            @Html.DisplayFor(model => model.Context)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Created): </span>@Html.DisplayFor(model => model.Created)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Url): </span>@Html.DisplayFor(model => model.Url)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Slug): </span>@Html.DisplayFor(model => model.Slug)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.ImageTitle): </span>@Html.DisplayFor(model => model.ImageTitle)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Category): </span>@Html.DisplayFor(model => model.Category.Title)
+        </p>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a>
+        </div>
+        <div class="backDiv">
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </article>
+</div>

@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    IEnumerable<Project>? projects = ViewData["Project"] as IEnumerable<Project>;
+    IEnumerable<Course>? courses = ViewData["Course"] as IEnumerable<Course>;
+    IEnumerable<SocialMedia>? socialMedia = ViewData["SocialMedia"] as IEnumerable<SocialMedia>;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Anton Högström Portfolio</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MyPortfolio.styles.css" asp-append-version="true" />
+</head>
+<body class="background-darkest text-lightest">
+    <header class="background-darkest">
+        <nav id="mainNav">
+            <a asp-area="" asp-controller="Home" asp-action="Index">
+                <picture id="logo">
+                    <img src="/ManualImages/aspnet.png" alt="Website Icon" />
+                </picture>
+            </a>
+            <button class="mobileMenuButton"><img src="/ManualImages/menu.png" alt="dropdown menu"/></button>
+            <ul id="mainNavOptions">
+                <li>
+                    <a class="btn background-blue text-lightest" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a class="btn background-blue text-lightest" asp-area="" asp-controller="Home" asp-action="Projects">Projects</a>
+                </li>
+                <li>
+                    <a class="btn background-blue text-lightest" asp-area="" asp-controller="Home" asp-action="Courses">Courses</a>
+                </li>
+                <li>
+                    <a class="btn background-blue text-lightest" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                </li>
+            </ul>
+            <partial name="_LoginPartial" />
+        </nav>
+            <nav id="adminNavOptions" class="background-blue">
+                <h2>Admin Tools</h2>
+                <ul>
+                    <li>
+                        <a class="btn background-dark text-lightest" asp-area="" asp-controller="Project" asp-action="Index">Projects</a>
+                    </li>
+                    <li>
+                        <a class="btn background-dark text-lightest" asp-area="" asp-controller="Course" asp-action="Index">Courses</a>
+                    </li>
+                    <li>
+                        <a class="btn background-dark text-lightest" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
+                    </li>
+                    <li>
+                        <a class="btn background-dark text-lightest" asp-area="" asp-controller="SocialMedia" asp-action="Index">Social Media</a>
+                    </li>
+                </ul>
+            </nav>
+    </header>
+    <main role="main" class="background-darkest">
+        @RenderBody()
+    </main>
+    <footer class="background-blue">
+        <div>
+            <ul>
+                <li>Anton Högström</li>
+                <li>Webbutveckling med .NET</li>
+                <li>DT191G</li>
+                <li>MIUN 2022</li>
+            </ul>
+        </div>
+        <div class="socialMediaDiv">
+            @if (socialMedia != null)
+                {
+                    foreach (var item in socialMedia)
+                    {
+                        <a href="@item.Url">
+                            <picture class="footerSocialMedia">
+                                <img src="/Images/@item.ImageName" title="@item.Url" alt="@item.Title"/>
+                            </picture>
+                        </a>
+                    }
+                }
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

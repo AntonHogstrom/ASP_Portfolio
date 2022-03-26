@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!--Only shows when signed in, enter URL to any admin-page manually to log in-->
+@if (SignInManager.IsSignedIn(User))
+{
+    <div id="identityDiv">
+        <ul>
+            <li>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            </li>
+            <li>
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button class="background-light text-darkest" type="submit">Logout</button>
+                </form>
+            </li>
+        </ul>
+        <div>
+            <button id="toggleAdmin" class="background-light text-darkest">Toggle Admin</button>
+        </div>
+    </div>
+}
+

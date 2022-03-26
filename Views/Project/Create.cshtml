@@ -1,0 +1,84 @@
+@model MyPortfolio.Models.Project
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section class="createSection">
+    <h1>Create</h1>
+
+    <h2>Project</h2>
+    <hr />
+    <div>
+        <div>
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="Name"></label>
+                        <span asp-validation-for="Name"></span>
+                    </div>
+                    <input asp-for="Name" />
+                </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="Context"></label>
+                        <span asp-validation-for="Context"></span>
+                    </div>
+                    <textarea asp-for="Context"></textarea>
+                </div>
+                <div class="labelDiv">
+                    <div>
+                        <label asp-for="Created"></label>
+                        <span asp-validation-for="Created"></span>
+                    </div>
+                        <input asp-for="Created" />
+                    </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="Url"></label>
+                        <span asp-validation-for="Url"></span>
+                </div>
+                        <input asp-for="Url" />
+                    </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="Slug"></label>
+                        <span asp-validation-for="Slug"></span>
+                    </div>
+                        <input asp-for="Slug" />
+                    </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="ImageFile"></label>
+                        <span asp-validation-for="ImageFile"></span>
+                    </div>
+                        <input class="background-light text-darkest" asp-for="ImageFile" />
+                    </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="ImageTitle"></label>
+                        <span asp-validation-for="ImageTitle"></span>
+                    </div>
+                        <input asp-for="ImageTitle" />
+                    </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="CategoryId"></label>
+                    </div>
+                        <select asp-for="CategoryId" asp-items="ViewBag.CategoryId"></select>
+                    </div>
+                    <div class="submitDiv">
+                        <input class="background-blue text-lightest" type="submit" value="Create" />
+                    </div>
+            </form>
+        </div>
+    </div>
+    <div class="backDiv">
+        <a asp-action="Index">Back to List</a>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

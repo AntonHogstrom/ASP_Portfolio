@@ -1,0 +1,31 @@
+@model MyPortfolio.Models.SocialMedia
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="articleDetails">
+    <article>
+        <picture>
+            <img src="@("~/Images/"+Model.ImageName)" alt="" asp-append-version="true" />
+        </picture>
+        <h2>
+            @Html.DisplayFor(model => model.Title)
+        </h2>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Url): </span>@Html.DisplayFor(model => model.Url)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.ImageTitle): </span>@Html.DisplayFor(model => model.ImageTitle)
+        </p>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a>
+        </div>
+        <div class="backDiv">
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </article>
+</div>

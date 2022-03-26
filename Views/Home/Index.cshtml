@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    IEnumerable<Project>? projects = ViewData["Project"] as IEnumerable<Project>;
+    IEnumerable<Course>? courses = ViewData["Course"] as IEnumerable<Course>;
+    IEnumerable<SocialMedia>? socialMedia = ViewData["SocialMedia"] as IEnumerable<SocialMedia>;
+    IEnumerable<Category>? category = ViewData["Category"] as IEnumerable<Category>;
+}
+<div class="indexDiv">
+    <div class="content">
+        <div class="presentation">
+            <div>
+                <h1>Hey im Anton<br /> Im a Web Developer</h1>
+                <p>
+                    <a class="btn background-blue text-lightest" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                    me so we can talk about a project!
+                </p>
+            </div>
+            <picture>
+                <img src="@("/ManualImages/AntonHogstrom.jpg")" alt="Anton Högström, Webdeveloper" />
+            </picture>
+        </div>
+        <section>
+            <h2>Recent Projects</h2>
+            <div class="articleContainer">
+                @{if (projects != null)
+                    {
+                        int i = 0;
+                        foreach (Project project in projects)
+                        {
+                            if (i < 3)
+                            {
+                                <article>
+                                    <h1 class="invisibleHeading">@Html.DisplayFor(modelItem => project.Name)</h1>
+                                    <a href="@project.Url">
+                                        <picture>
+                                            <img src="@("~/Images/" + project.ImageName)" title="@project.Url" alt="@project.Url" asp-append-version="true" />
+                                        </picture>
+                                    </a>
+                                    <p>
+                                        <span>@Html.DisplayNameFor(model => project.Url): </span>@Html.DisplayFor(modelItem => project.Url)
+                                    </p>
+                                    @if (project.Category != null)
+                                    {
+                                        <button class="btn text-lightest" style="background-color:@project.Category.Color">@Html.DisplayFor(modelItem => project.Category.Title)</button>
+                                    }
+                                    <a href="Projects/Details/@project.Id">Read More</a>
+                                </article>
+                            }
+                            i++;
+                        }
+                    }
+                }
+            </div>
+        </section>
+        <section>
+            <h2>What I can do</h2>
+            <div class="knowledgeContainer">
+                @{if (category != null)
+                    {
+                        foreach (Category Category in category)
+                        {
+                            {
+                                <picture>
+                                    <img src="@("~/Images/" + Category.ImageName)" title="@Category.Title" alt="@Category.Title" asp-append-version="true" />
+                                </picture>
+                            }
+                        }
+                    }
+                }
+            </div>
+        </section>
+    </div>
+    <aside class="background-blue">
+        <h2>Looking to hire?</h2>
+        <p>
+            Currently finishing my studies through MIUN University in Sweden<br /><br />
+            Working currently as technical support for 3 Sweden<br /><br />
+            Check out my <a class="text-darkest" href="/projects">projects</a>, my <a class="text-darkest" href="https://github.com/NoEz9">Github</a> and my <a class="text-darkest" href="/Courses">courses</a>.
+        </p>
+    </aside>
+</div>

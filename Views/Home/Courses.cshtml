@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MyPortfolio.Models.Course>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<div class="beforeArticles">
+    <h1>Courses</h1>
+</div>
+<div class="articleContainer">
+    @foreach (var item in Model)
+    {
+    <article>
+        <picture>
+            <img src="@("~/Images/"+item.ImageName)" title="@item.ImageTitle" alt="@item.ImageTitle" asp-append-version="true" />
+        </picture>
+        <h2>
+            @Html.DisplayFor(modelItem => item.Name)
+        </h2>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Code): </span>@Html.DisplayFor(modelItem => item.Code)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Progression): </span>@Html.DisplayFor(modelItem => item.Progression)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Syllabus): </span>@Html.DisplayFor(modelItem => item.Syllabus)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.StartDate): </span>@Html.DisplayFor(modelItem => item.StartDate)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.EndDate): </span>@Html.DisplayFor(modelItem => item.EndDate)
+        </p>
+    </article>
+    }
+</div>

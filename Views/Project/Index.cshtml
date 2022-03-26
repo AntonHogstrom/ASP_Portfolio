@@ -1,0 +1,40 @@
+@model IEnumerable<MyPortfolio.Models.Project>
+
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<div class="beforeArticles">
+    <h1>Projects</h1>
+    <p>
+        <a class="btn background-blue text-lightest" asp-action="Create">Create New</a>
+    </p>
+</div>
+<div class="articleContainer">
+@foreach (var item in Model)
+{
+    <article>
+        <picture>
+            <img src="@("~/Images/"+item.ImageName)" alt="" asp-append-version="true" />
+        </picture>
+        <h2>
+            @Html.DisplayFor(modelItem => item.Name)
+        </h2>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Created): </span>@Html.DisplayFor(modelItem => item.Created)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Url): </span>@Html.DisplayFor(modelItem => item.Url)
+        </p>
+        @if (item.Category != null)
+        {
+            <button class="btn text-lightest" style="background-color:@item.Category.Color">@Html.DisplayFor(modelItem => item.Category.Title)</button>
+        }
+        <div class="crudDiv">
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </div>
+    </article>
+}
+</div>

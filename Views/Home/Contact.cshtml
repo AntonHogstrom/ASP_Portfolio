@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+    IEnumerable<SocialMedia>? socialMedia = ViewData["SocialMedia"] as IEnumerable<SocialMedia>;
+}
+<div class="contact">
+    <h2>Contact me through<br />Social Media</h2>
+    <div class="socialMediaDiv">
+        @if (socialMedia != null)
+        {
+            foreach (var item in socialMedia)
+            {
+                <a href="@item.Url">
+                    <picture class="footerSocialMedia">
+                        <img src="Images/@item.ImageName" title="@item.Url" alt="@item.Title" />
+                    </picture>
+                </a>
+            }
+        }
+    </div>
+    <h2>Contact Form</h2>
+    <form class="contactForm" method="POST" action="/ProcessEmail" name="portfolio_contact">
+        <div>
+            <label for="name">Name</label>
+            <input name="name" type="text" placeholder="John Doe" />
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input name="email" type="email" placeholder="example@email.com" />
+        </div>
+        <div>
+            <label for="message">Message</label>
+            <textarea name="message" placeholder="Hi, i need you for a job!"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Send Message"/>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,33 @@
+﻿@model MyPortfolio.Models.Project
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="articleDetails">
+    <h1>Details</h1>
+    <article>
+        <a href="@Model.Url">
+            <picture>
+                <img src="@("~/Images/"+Model.ImageName)" alt="@Model.Url" title="@Model.Url" asp-append-version="true" />
+            </picture>
+        </a>
+        <h2>
+            @Html.DisplayFor(model => model.Name)
+        </h2>
+        <p>
+            @Html.DisplayFor(model => model.Context)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Url): </span>@Html.DisplayFor(model => model.Url)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Created): </span>@Html.DisplayFor(model => model.Created)
+        </p>
+        <p>
+            <button class="btn text-darkest" style="background-color:@Model.Category.Color">@Html.DisplayFor(model => Model.Category.Title)</button>
+        </p>
+        <div>
+            <a class="btn background-blue text-lightest" asp-action="Index">Back</a>
+        </div>
+    </article>
+</div>

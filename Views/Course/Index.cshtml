@@ -1,0 +1,48 @@
+@model IEnumerable<MyPortfolio.Models.Course>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<div class="beforeArticles">
+    <h1>Courses</h1>
+    <p>
+        <a class="btn background-blue text-lightest" asp-action="Create">Create New</a>
+    </p>
+</div>
+<div class="articleContainer">
+    @foreach (var item in Model)
+    {
+    <article>
+        <picture>
+            <img src="@("~/Images/"+item.ImageName)" alt="" asp-append-version="true" />
+        </picture>
+        <h2>
+            @Html.DisplayFor(modelItem => item.Code)
+        </h2>
+        <h3>
+            @Html.DisplayFor(modelItem => item.Name)
+        </h3>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Progression): </span>@Html.DisplayFor(modelItem => item.Progression)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Syllabus): </span>@Html.DisplayFor(modelItem => item.Syllabus)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.StartDate): </span>@Html.DisplayFor(modelItem => item.StartDate)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.EndDate): </span>@Html.DisplayFor(modelItem => item.EndDate)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.ImageTitle): </span>@Html.DisplayFor(modelItem => item.ImageTitle)
+        </p>
+        <div class="crudDiv">
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </div>
+    </article>
+    }
+</div>

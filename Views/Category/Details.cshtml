@@ -1,0 +1,36 @@
+@model Category
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="articleDetails">
+    <h1>Details</h1>
+
+    <article>
+        <picture>
+            <img src="@("~/Images/"+Model.ImageName)" alt="" asp-append-version="true" />
+        </picture>
+        <h2>
+            @Html.DisplayFor(model => model.Title)
+        </h2>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.Color): </span>@Html.DisplayFor(model => model.Color)
+        </p>
+        <p>
+            <span>@Html.DisplayNameFor(model => model.ImageTitle): </span>@Html.DisplayFor(model => model.ImageTitle)
+        </p>
+        <p>
+            <span>Visual Representation:</span>
+            <button class="btn text-darkest" style="background-color:@Model.Color">@Html.DisplayFor(model => model.Title)</button>
+        </p>
+    </article>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a>
+    </div>
+    <div class="backDiv">
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+@model MyPortfolio.Models.Course
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<section class="createSection">
+    <h1>Edit</h1>
+
+    <h2>Course</h2>
+    <hr />
+    <div>
+        <div>
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly"></div>
+                <input type="hidden" asp-for="Id" />
+                <div>
+                    <p>Current Image</p>
+                    <img src="@("~/Images/"+Model.ImageName)" alt="" asp-append-version="true" />
+                </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="Code"></label>
+                        <span asp-validation-for="Code"></span>
+                    </div>
+                    <input asp-for="Code" />
+                </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="Name"></label>
+                        <span asp-validation-for="Name"></span>
+                    </div>
+                    <input asp-for="Name" />
+                </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="Progression"></label>
+                        <span asp-validation-for="Progression"></span>
+                    </div>
+                    <input asp-for="Progression" />
+                </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="Syllabus"></label>
+                        <span asp-validation-for="Syllabus"></span>
+                    </div>
+                    <input asp-for="Syllabus" />
+                </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="StartDate"></label>
+                        <span asp-validation-for="StartDate"></span>
+                    </div>
+                    <input asp-for="StartDate" />
+                </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="EndDate"></label>
+                        <span asp-validation-for="EndDate"></span>
+                    </div>
+                    <input asp-for="EndDate" />
+                </div>
+                <div class="form-group">
+                    <div class="labelDiv">
+                        <label asp-for="ImageFile" class="control-label"></label>
+                        <span asp-validation-for="ImageFile"></span>
+                    </div>
+                    <input class="background-light text-darkest" asp-for="ImageFile" accept="image/*" />
+                </div>
+                <div>
+                    <div class="labelDiv">
+                        <label asp-for="ImageTitle"></label>
+                        <span asp-validation-for="ImageTitle"></span>
+                    </div>
+                    <input asp-for="ImageTitle" />
+                </div>
+                <div class="submitDiv">
+                    <input class="background-blue text-lightest" type="submit" value="Save" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="backDiv">
+        <a asp-action="Index">Back to List</a>
+    </div>
+</section>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
